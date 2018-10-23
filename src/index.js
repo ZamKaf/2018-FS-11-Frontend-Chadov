@@ -1,2 +1,3 @@
-import say from './lib/test.js'; // ES-module
+import say from './lib/test'; // ES-module
+
 say('Javascript');

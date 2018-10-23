@@ -1,7 +1,10 @@
+import './test.css';
+
 const say = function (name) {
-    alert (`Hello, ${name}`);
-    console.log("123qwe");
-    "werwer";
-}
+  const d = document.createElement('div');
+  d.className = 'div_one';
+  d.textContent = `Hello, ${name}`;
+  document.body.appendChild(d);
+};
 
 export default say;
