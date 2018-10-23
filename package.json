@@ -1,21 +1,13 @@
 {
-  "name": "4trackfront",
+  "name": "courses",
   "version": "1.0.0",
-  "description": "TT Frontend project",
+  "description": "Frontend courses for MIPT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZamKaf/4trackFront.git"
-  },
-  "author": "",
+  "author": "zipper@medde.ru",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ZamKaf/4trackFront/issues"
-  },
-  "homepage": "https://github.com/ZamKaf/4trackFront#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -23,14 +15,12 @@
     "css-loader": "^1.0.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.20.2"
-  },
-  "dependencies": {
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2"
   }
 }
