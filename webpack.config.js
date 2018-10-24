@@ -40,6 +40,11 @@ module.exports = {
         include: sourceRoot,
         use: ['style-loader', 'css-loader'],
       },
+        {
+            test: /main_forms\.css$/,
+            include: sourceRoot,
+            use: ['style-loader', 'css-loader'],
+        },
     ],
   },
   plugins: [
