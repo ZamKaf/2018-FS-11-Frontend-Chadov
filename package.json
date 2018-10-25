@@ -1,13 +1,21 @@
 {
-  "name": "courses",
+  "name": "2018-FS-11-Frontend-Chadov",
   "version": "1.0.0",
-  "description": "Frontend courses for MIPT",
+  "description": "TT Frontend project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "zipper@medde.ru",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2018-FS-11-Frontend-Chadov/4trackFront.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZamKaf/2018-FS-11-Frontend-Chadov/issues"
+  },
+  "homepage": "https://github.com/ZamKaf/2018-FS-11-Frontend-Chadov#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
