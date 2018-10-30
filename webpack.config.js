@@ -1,16 +1,59 @@
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const sourceRoot = path.resolve(__dirname, 'src');
+
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.js/,
-                loader: 'babel-loader',
-                include: __dirname + '/src',
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            },
-        ],
-    },
-    //watch: true,
+  entry: {
+    create: `${sourceRoot}/app/create/index.js`,
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath: '/static/',
+    filename: '[name]/bundle.js',
+  },
+  watch: true,
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: sourceRoot,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /shadow\.css$/,
+        include: sourceRoot,
+        use: {
+          loader: 'css-loader',
+        },
+      },
+      {
+        test: /index\.css$/,
+        include: sourceRoot,
+        use: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+      },
+      {
+        test: /test\.css$/,
+        include: sourceRoot,
+        use: ['style-loader', 'css-loader'],
+      },
+        {
+            test: /main_forms\.css$/,
+            include: sourceRoot,
+            use: ['style-loader', 'css-loader'],
+        },
+    ],
+  },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: '[name]/style.css',
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'create/index.html',
+      template: './src/app/create/index.html',
+    }),
+  ],
 };
