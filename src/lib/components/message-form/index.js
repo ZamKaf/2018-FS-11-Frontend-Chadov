@@ -54,18 +54,19 @@ class MessageForm extends HTMLElement {
   _initElements() {
     const form = this.shadowRoot.querySelector('form');
     const message = this.shadowRoot.querySelector('form-input');
-    // var fileInput = this.shadowRoot.querySelector('file-input');
+    const fileInput = this.shadowRoot.querySelector('file-input');
     this._elements = {
       form,
       message,
-      // file: fileInput
+      file: fileInput,
     };
   }
 
   _addHandlers() {
     this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
+    this._elements.message.addEventListener('input', this._onInput.bind(this));
     this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
-    // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
+    this._elements.file.addEventListener('change', this._onFileChange.bind(this))
   }
 
   _onSubmit(event) {
@@ -82,7 +83,6 @@ class MessageForm extends HTMLElement {
     });
     this.dispatchEvent(messageEvent);
     event.preventDefault();
-
   }
 
   _onKeyPress(event) {
@@ -97,6 +97,20 @@ class MessageForm extends HTMLElement {
     } else {
       this._elements.form.classList.remove(stateClasses.withMessage);
     }
+  }
+
+  _onFileChange(event) {
+    const message = {
+      text: null,
+      time: new Date(),
+      my: true,
+      files: event.target.files,
+    };
+    const messageEvent = new CustomEvent('new-message', {
+      bubbles: false,
+      detail: message,
+    });
+    this.dispatchEvent(messageEvent);
   }
 }
 

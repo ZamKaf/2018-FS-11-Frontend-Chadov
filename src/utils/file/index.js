@@ -1,30 +1,15 @@
-const KB = Math.pow(2, 10);
-const MB = Math.pow(KB, 2);
+export const imagePattern = /^image\.*/;
 
-const sizes = [
-	{
-		name: 'Кбайт',
-		size: KB
-	},
-	{
-		name: 'Мбайт',
-		size: MB
-	}
-];
+export const KB = 1024;
+export const Kb = KB / 8;
+export const MB = KB * 1024;
+export const Mb = MB / 8;
+export const GB = MB * 1024;
+export const Gb = GB / 8;
 
-const imagePattern = /^image\.*/;
-
-function getReadableSize (size) {
-	return sizes.reduce((result, current, index, array) => {
-		if (!result.length && (
-				100 * current.size > size || index === array.length - 1
-		)) {
-			result = (size / current.size);
-			result = [result.toFixed(result > 1 ? 0 : 2), current.name].join(' ');
-		}
-		return result;
-	}, '');
+export function GetReadableSize(size) {
+  if (size > GB) return `${size / GB | 0} GBytes`;
+  if (size > MB) return `${size / MB | 0} MBytes`;
+  if (size > KB) return `${size / KB | 0} KBytes`;
+  return `${size} Bytes`;
 }
-
-
-export {getReadableSize, KB, MB, imagePattern};

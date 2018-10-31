@@ -3,7 +3,6 @@ import MessageForm from '../../lib/components/message-form';
 import MessagesList from '../../lib/components/messages-list';
 import './main_forms.css';
 
-import say from '../../lib/test'; // ES-module
 // say('Javascript');
 /*alert('wer1');
 document.getElementsByClassName('message-form')[0].addEventListener('new-message', (event) => {
