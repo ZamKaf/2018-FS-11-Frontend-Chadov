@@ -1,15 +1,12 @@
-import styles from './index.css';
 import shadowStyles from './shadow.css';
+
 
 const template = `
 	<style>${shadowStyles.toString()}</style>
+	<slot name="before"></slot>
 	<input />
-	<slot name="icon"></slot>
+	<slot name="after"></slot>
 `;
-
-// const iconTemplate = `
-//	<div class="${styles.icon}" />
-// `;
 
 class FormInput extends HTMLElement {
   constructor() {
@@ -26,11 +23,13 @@ class FormInput extends HTMLElement {
       'placeholder',
       'value',
       'disabled',
+      'type',
     ];
   }
 
   attributeChangedCallback(attrName, oldVal, newVal) {
     this._elements.input[attrName] = newVal;
+    this._elements.hiddenInput[attrName] = newVal;
   }
 
   _initElements() {
@@ -48,8 +47,20 @@ class FormInput extends HTMLElement {
   }
 
   _onInput() {
+    this.value = this._elements.input.value;
     this._elements.hiddenInput.value = this._elements.input.value;
+  }
+
+  set value(newVal) {
+    this._elements.input.value = newVal;
+    this._elements.hiddenInput.value = newVal;
+  }
+
+  get value() {
+    return this._elements.input.value;
   }
 }
 
 customElements.define('form-input', FormInput);
+
+export default FormInput;

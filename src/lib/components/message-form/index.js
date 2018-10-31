@@ -1,8 +1,9 @@
-// import styles from './index.css';
 import shadowStyles from './shadow.css';
 
-const slotName = 'message-input';
-
+/*
+const stateClasses = {
+    withMessage: 'with-message'
+};
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
@@ -10,6 +11,23 @@ const template = `
 		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
 			<span slot="icon"></span>
 		</form-input>
+	</form>
+`;
+*/
+
+const template = `
+	<style>${shadowStyles.toString()}</style>
+	<form>
+		<div class="result"></div>
+		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
+			<div slot="before">
+			</div>
+			<div slot="after">
+				<file-input></file-input>
+				<button type="submit">-></button>
+			</div>
+		</form-input>
+		<geo-input name="message-pos"></geo-input>
 	</form>
 `;
 
@@ -61,6 +79,19 @@ class MessageForm extends HTMLElement {
       this._elements.form.dispatchEvent(new Event('submit'));
     }
   }
+    _onInput () {
+        if (this._elements.message.value.length > 0) {
+            this._elements.form.classList.add(stateClasses.withMessage);
+        } else {
+            this._elements.form.classList.remove(stateClasses.withMessage);
+        }
+    }
+}
+
+function serializeForm () {
+
 }
 
 customElements.define('message-form', MessageForm);
+
+export default MessageForm;
