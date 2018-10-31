@@ -1,9 +1,7 @@
 import shadowStyles from './shadow.css';
 
 /*
-const stateClasses = {
-    withMessage: 'with-message'
-};
+
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
@@ -14,7 +12,9 @@ const template = `
 	</form>
 `;
 */
-
+const stateClasses = {
+  withMessage: 'with-message',
+};
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
@@ -53,10 +53,12 @@ class MessageForm extends HTMLElement {
 
   _initElements() {
     const form = this.shadowRoot.querySelector('form');
-    const message = this.shadowRoot.querySelector('.result');
+    const message = this.shadowRoot.querySelector('form-input');
+    // var fileInput = this.shadowRoot.querySelector('file-input');
     this._elements = {
       form,
       message,
+      // file: fileInput
     };
   }
 
@@ -67,11 +69,20 @@ class MessageForm extends HTMLElement {
   }
 
   _onSubmit(event) {
-    this._elements.message.innerText = Array.from(this._elements.form.elements).map(
-      el => el.value,
-    ).join(', ');
+    const message = {
+      text: this._elements.message.value,
+      time: new Date(),
+      my: true,
+    };
+    this._elements.message.value = '';
+    this._elements.form.classList.remove(stateClasses.withMessage);
+    const messageEvent = new CustomEvent('new-message', {
+      bubbles: false,
+      detail: message,
+    });
+    this.dispatchEvent(messageEvent);
     event.preventDefault();
-    return false;
+
   }
 
   _onKeyPress(event) {
@@ -79,16 +90,17 @@ class MessageForm extends HTMLElement {
       this._elements.form.dispatchEvent(new Event('submit'));
     }
   }
-    _onInput () {
-        if (this._elements.message.value.length > 0) {
-            this._elements.form.classList.add(stateClasses.withMessage);
-        } else {
-            this._elements.form.classList.remove(stateClasses.withMessage);
-        }
+
+  _onInput() {
+    if (this._elements.message.value.length > 0) {
+      this._elements.form.classList.add(stateClasses.withMessage);
+    } else {
+      this._elements.form.classList.remove(stateClasses.withMessage);
     }
+  }
 }
 
-function serializeForm () {
+function serializeForm() {
 
 }
 
