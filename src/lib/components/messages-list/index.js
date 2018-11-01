@@ -8,38 +8,53 @@ const template = `
 `;
 
 class MessagesList extends HTMLElement {
-	constructor () {
-		super();
-		const shadowRoot = this.attachShadow({mode: 'open'});
-		shadowRoot.innerHTML = template;
-		this._getElements();
-		this._messages = {};
-		this.addMessage({text: 'Привет, как дела?', time: new Date, my: false});
-	}
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.innerHTML = template;
+    this._getElements();
+    this._messages = {};
+    this.addMessage({ text: 'Привет, как дела?', time: new Date(), my: false });
+  }
 
-	addMessage (message) {
-		if (!(message.time in this._messages)) {
-			const messageElem = MessagesList.createMessage(message);
-			const container = this._elements.container;
-			container.appendChild(messageElem);
-			this.scrollTop = this.scrollHeight - this.offsetHeight;
-			return messageElem;
-		}
-		return null;
-	}
+  addMessage(message) {
+    if (!(message.time in this._messages)) {
+      const formData = new FormData(message);
+      formData.set('value', message.text);
+      formData.set('time', message.time);
+      formData.set('author', 'mememe');
+      let request = {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData,
+      };
+      fetch("http://localhost:8081/home/user/WebstormProjects/listenServer/app.js", request).then((response) => {
+          alert("yey");
+          alert(response.status);
+          alert("is all right: " + response.ok);
+      }).catch(alert);
 
-	_getElements () {
-		this._elements = {
-			container: this.shadowRoot.getElementById('container')
-		};
-	}
+      const messageElem = MessagesList.createMessage(message);
+      const container = this._elements.container;
+      container.appendChild(messageElem);
+      this.scrollTop = this.scrollHeight - this.offsetHeight;
+      return messageElem;
+    }
+    return null;
+  }
 
-	static createMessage (message) {
-		const messageElem = document.createElement('list-message');
-		messageElem.my = message.my;
-		messageElem.setMessage(message);
-		return messageElem;
-	}
+  _getElements() {
+    this._elements = {
+      container: this.shadowRoot.getElementById('container'),
+    };
+  }
+
+  static createMessage(message) {
+    const messageElem = document.createElement('list-message');
+    messageElem.my = message.my;
+    messageElem.setMessage(message);
+    return messageElem;
+  }
 }
 
 customElements.define('messages-list', MessagesList);
