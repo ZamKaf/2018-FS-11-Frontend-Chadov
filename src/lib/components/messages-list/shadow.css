@@ -1,0 +1,18 @@
+:host {
+	display: flex;
+	overflow-y: auto;
+}
+
+#container {
+	border-bottom: 0;
+	padding: 8px;
+	box-sizing: border-box;
+	background-color: yellow;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: flex-end;
+	flex-grow: 1;
+	min-height: min-content;
+}

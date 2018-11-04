@@ -1,3 +1,5 @@
+export const imagePattern = /^image\.*/;
+
 export const KB = 1024;
 export const Kb = KB / 8;
 export const MB = KB * 1024;
@@ -11,5 +13,3 @@ export function GetReadableSize(size) {
   if (size > KB) return `${size / KB | 0} KBytes`;
   return `${size} Bytes`;
 }
-
-// export { KB, Kb, MB, Mb, GB, Gb }

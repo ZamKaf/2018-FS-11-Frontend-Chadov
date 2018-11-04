@@ -1,15 +1,24 @@
-// import styles from './index.css';
 import shadowStyles from './shadow.css';
+import FormInput from '../form/-input';
+import GeoInput from '../form/-geo-input';
+import FileInput from '../form/-file-input';
 
-const slotName = 'message-input';
-
+const stateClasses = {
+  withMessage: 'with-message',
+};
 const template = `
 	<style>${shadowStyles.toString()}</style>
 	<form>
 		<div class="result"></div>
 		<form-input name="message_text" placeholder="Введите сообщение" slot="message-input">
-			<span slot="icon"></span>
+			<div slot="before">
+			</div>
+			<div slot="after">
+				<file-input></file-input>
+				<button type="submit">-></button>
+			</div>
 		</form-input>
+		<geo-input name="message-pos"></geo-input>
 	</form>
 `;
 
@@ -35,25 +44,37 @@ class MessageForm extends HTMLElement {
 
   _initElements() {
     const form = this.shadowRoot.querySelector('form');
-    const message = this.shadowRoot.querySelector('.result');
+    const message = this.shadowRoot.querySelector('form-input');
+    const fileInput = this.shadowRoot.querySelector('file-input');
     this._elements = {
       form,
       message,
+      file: fileInput,
     };
   }
 
   _addHandlers() {
     this._elements.form.addEventListener('submit', this._onSubmit.bind(this));
+    this._elements.message.addEventListener('input', this._onInput.bind(this));
     this._elements.form.addEventListener('keypress', this._onKeyPress.bind(this));
-    // this._elements.inputSlot.addEventListener('slotchange', this._onSlotChange.bind(this));
+    this._elements.file.addEventListener('change', this._onFileChange.bind(this));
   }
 
   _onSubmit(event) {
-    this._elements.message.innerText = Array.from(this._elements.form.elements).map(
-      el => el.value,
-    ).join(', ');
+    if (!this._elements.message.value) return;
+    const message = {
+      text: this._elements.message.value,
+      time: new Date(),
+      my: true,
+    };
+    this._elements.message.value = '';
+    this._elements.form.classList.remove(stateClasses.withMessage);
+    const messageEvent = new CustomEvent('new-message', {
+      bubbles: false,
+      detail: message,
+    });
+    this.dispatchEvent(messageEvent);
     event.preventDefault();
-    return false;
   }
 
   _onKeyPress(event) {
@@ -61,6 +82,35 @@ class MessageForm extends HTMLElement {
       this._elements.form.dispatchEvent(new Event('submit'));
     }
   }
+
+  _onInput() {
+    if (this._elements.message.value.length > 0) {
+      this._elements.form.classList.add(stateClasses.withMessage);
+    } else {
+      this._elements.form.classList.remove(stateClasses.withMessage);
+    }
+  }
+
+  _onFileChange(event) {
+      alert("1");
+    const message = {
+      text: null,
+      time: new Date(),
+      my: true,
+      files: event.target.files,
+    };
+    const messageEvent = new CustomEvent('new-message', {
+      bubbles: false,
+      detail: message,
+    });
+    this.dispatchEvent(messageEvent);
+  }
+}
+
+function serializeForm() {
+
 }
 
 customElements.define('message-form', MessageForm);
+
+export default MessageForm;
