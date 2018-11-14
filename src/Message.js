@@ -13,10 +13,10 @@ export default class Message extends Component{
     render()
     {
         return (
-            <form className={'message '+ this.my}>
+            <div className={'message '+ this.my}>
                 <section>{this.value}</section>
                 <time>{this.time}</time>
-            </form>
+            </div>
         );
     }
 }

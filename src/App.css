@@ -83,13 +83,29 @@ span {
     float: left;
     margin-right: 10px;
 }
+.inputMessageForm{
+    border: 1px;
+    border-bottom-color: blue;
+    background-color: blue;
+    color: blue;
+    width: 90%;
+    padding: 3px 3px 3px 3px;
+}
+.fileInput{
+    flex-grow: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 9%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    padding: 0;
+}
 
 .message-form-container{
     position: absolute;
     bottom: 0;
-    border: 1px;
-    border-bottom-color: red;
-    color: blue;
     width: 100%;
 }
 

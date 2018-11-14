@@ -12,7 +12,7 @@ export default class MessageList extends Component{
         return (
             <div className='message-list'>
                 {messages.map( (value) =>
-                    <Message key = {value.toString()} text={value.text} my={value.my}></Message>)
+                    <Message key = {value.toString() + (new Date()).toDateString()} text={value.text} my={value.my}></Message>)
                 }
             </div>
         );
