@@ -1,5 +1,3 @@
-export const imagePattern = /^image\.*/;
-
 export const KB = 1024;
 export const Kb = KB / 8;
 export const MB = KB * 1024;
