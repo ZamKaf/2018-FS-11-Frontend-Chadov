@@ -18,7 +18,7 @@ export default class MessageForm extends Component{
     }
     handleFileChange(e){
         console.log(e.target.files.length);
-        if (0 == e.target.files.length) return;
+        if (0 === e.target.files.length) return;
         let file = e.target.files[0];
         this.fileName = file.name;
         this.fileSize = file.size;
@@ -27,7 +27,7 @@ export default class MessageForm extends Component{
     handleSubmit(e) {
         this.submitAction(this.state.value);
         this.setState({ value: '' });
-        if (this.fileName != "")
+        if (this.fileName !== "")
         {
             this.submitAction(`FILE: "${this.fileName}" SIZE: ${GetReadableSize(this.fileSize)}`);
             this.fileName = "";
