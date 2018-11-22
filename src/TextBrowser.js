@@ -24,13 +24,11 @@ export default class TextBrowser extends Component{
     }
 
     handleSubmit(value) {
-        console.log(value);
         if (value === "") return;
         this.messages.push({text: value.toString(), my:true });
         this.setState({ messages: this.messages });
     }
     handleFileSubmit(value) {
-        console.log("123");
         if (value === "") return;
         this.messages.push({text: value, my:true });
         this.setState({ messages: this.messages });

@@ -1,0 +1,6 @@
+export const CHANGE_CHAT_NAME = 'CHANGE_CHAT_NAME';
+export const OPEN_CHAT = 'OPEN_CHAT';
+export const NEW_MESSAGE = 'NEW_MESSAGE';
+export const SUBTRACT = 'SUBTRACT';
+export const CHANGE_USER_NAME = 'CHANGE_USER_NAME';
+export const AUTHORIZATION = 'AUTHORIZATION';
