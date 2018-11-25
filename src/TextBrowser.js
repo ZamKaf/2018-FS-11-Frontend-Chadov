@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 import React, { Component } from 'react';
 
 import MessageForm from './MessageForm';
@@ -11,7 +12,7 @@ export default class TextBrowser extends Component{
         const myList = ["Oleg", "Boris", "Arina"];
 
         this.name = props.match.params.name;
-        if (-1 == myList.indexOf(this.name))
+        if (-1 === myList.indexOf(this.name))
             throw `There is no chat with user ${this.name}`;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFileSubmit = this.handleFileSubmit.bind(this);
@@ -23,14 +24,12 @@ export default class TextBrowser extends Component{
     }
 
     handleSubmit(value) {
-        console.log(value);
-        if (value == "") return;
+        if (value === "") return;
         this.messages.push({text: value.toString(), my:true });
         this.setState({ messages: this.messages });
     }
     handleFileSubmit(value) {
-        console.log("123");
-        if (value == "") return;
+        if (value === "") return;
         this.messages.push({text: value, my:true });
         this.setState({ messages: this.messages });
     }
