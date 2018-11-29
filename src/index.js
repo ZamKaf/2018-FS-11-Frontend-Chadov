@@ -10,10 +10,12 @@ import * as logger from './logger';
 import * as serviceWorker from './serviceWorker';
 import userReducer from './store/reducers/user';
 import chatReducer from './store/reducers/chat';
+import authReducer from './store/reducers/auth';
 
 const rootReducer = combineReducers({
     user: userReducer,
-    chat: chatReducer
+    chat: chatReducer,
+    auth: authReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
