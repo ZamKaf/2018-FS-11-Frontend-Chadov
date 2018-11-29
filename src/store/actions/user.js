@@ -13,3 +13,10 @@ export const changeUserName = ( name ) => {
         name: name
     };
 };
+
+export const initUserData = ( data ) => {
+    return {
+        type: actionTypes.INIT_USER_DATA,
+        data: data
+    };
+};

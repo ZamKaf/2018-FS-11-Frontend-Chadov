@@ -4,6 +4,14 @@ export {
     changeChatName
 } from './chat';
 export {
-    storeResult,
-    deleteResult
+    authorization,
+    changeUserName,
+    initUserData
 } from './user';
+export {
+    authFailed,
+    authStart,
+    authSuccess,
+    auth,
+    authCheckState
+} from './auth'

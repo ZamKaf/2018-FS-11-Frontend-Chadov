@@ -4,3 +4,7 @@ export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const SUBTRACT = 'SUBTRACT';
 export const CHANGE_USER_NAME = 'CHANGE_USER_NAME';
 export const AUTHORIZATION = 'AUTHORIZATION';
+export const AUTH_START = 'AUTH_START';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_FAILED = 'AUTH_FAILED';
+export const INIT_USER_DATA = 'INIT_USER_DATA';

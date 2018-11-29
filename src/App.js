@@ -1,17 +1,50 @@
 import React, { Component } from 'react';
 import './App.css';
-import TextBrowser from './TextBrowser.js';
-import StartPage from './StartPage.js'
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Auth from './components/Auth/Auth';
+import Layout from './components/Layout/Layout';
+import TextBrowser from './components/Messages/TextBrowser.js';
+import ChatList from './components/ChatList.js'
+import {connect} from 'react-redux';
+import * as actions from './store/actions';
+import { BrowserRouter as Router, Route, Link,Switch, Redirect} from 'react-router-dom';
+
+const About = () => (
+    <div>AboutPage</div>
+);
 
 class App extends Component {
   render() {
+      let route =
+          (
+              <Switch>
+                  <Route path='/about' exact component={About} />
+                  <Route path='/login' exact component={Auth} />
+                  <Redirect to='/login'></Redirect>
+              </Switch>
+          )
+      ;
+      if(this.props.token || localStorage.token) {
+          route = (
+              <Switch>
+                  <Route path='/chats/:name/' exact component={TextBrowser} />
+                  <Route path='/chats' exact component={() => ChatList(this.props.userData.chatNames)} />
+
+                  <Route path='/login' exact component={Auth} />
+                  <Route path='/about' exact component={About} />
+                  <Redirect to='/about'></Redirect>
+              </Switch>
+          )
+      };
+
     return (
         <Router>
           <div className="App">
-              <Route path='/' exact component={StartPage}/>
-              <Route path='/:name' exact component={TextBrowser} />
+              <Layout>
+                  {route}
+              </Layout>
               {/*
+              <Route path='/' exact component={ChatList}/>
+              <Route path='/:name' exact component={TextBrowser} />
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <p>
@@ -33,5 +66,17 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        userData: state.user.data,
+    }
+};
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+    return  {
+        checkToken: () => dispatch(actions.authCheckState())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
