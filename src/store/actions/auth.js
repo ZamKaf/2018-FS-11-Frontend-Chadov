@@ -5,10 +5,12 @@ import {initUserData} from './user';
 axios.interceptors.response.use((response) => {
   return response;
 }, (error) => {
-
+    console.log("error^");
+    console.log(error.config);
   return Promise.resolve({
     data: {
       token: 'sdfsdfsef34234wefsdf234',
+        chatNames: ['Oleg', 'Boris']
     },
     status: 200,
     statusText: 'Ok',
@@ -53,23 +55,25 @@ export const auth = (login, password) => {
   return dispatch => {
     dispatch(authStart());
     //axios.post('/auth', {login, password})
-      fetch(`http://127.0.0.1:5000/login?login=${login}&password=${password}`, {
-          method: 'GET',
+      axios.get(`http://127.0.0.1:5000/login?login=${login}&password=${password}`)
+      //fetch(`http://127.0.0.1:5000/login?login=${login}&password=${password}`, {
+         /* method: 'GET',
           mode: 'no-cors'
-      })
+      })*/
           .then((res)=>{
               console.log("object")
               console.log(res)
+              //debugger
               if(200>=res.status && res.status<300){
                   return res;
               }
               throw new Error(res.statusText);
           })
-          .then((res) => res.json())
+          .then((res) => res.data)
           .then((res) =>{
               localStorage.setItem('token', res.token);
               dispatch(authSuccess(res.token));
-              dispatch(initUserData(res.data));
+              dispatch(initUserData(res));
           })
       .catch(error => {
           console.log('failed:');

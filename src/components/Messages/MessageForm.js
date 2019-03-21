@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import {GetReadableSize} from "./sizes";
+import Button from "./Button";
+import styles from './styles.module.css';
+import FormInput from './Form/FormInput';
+import FileInput from './Form/FileInput';
+import Smiles, {smilesData} from "./Form/Smiles";
+import SmileButton from "./Form/Smiles/SmileButton";
 
 export default class MessageForm extends Component{
     constructor(props){
@@ -7,31 +13,58 @@ export default class MessageForm extends Component{
         this.submitAction = props.onSubmit;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleFileChange = this.handleFileChange.bind(this);
-        this.state = { value: ''};
+        //this.handleFileChange = this.handleFileChange.bind(this);
+        this.state =
+            {
+                value: '',
+                withMessage: false,
+            };
         this.fileName = "";
         this.fileSize = 0;
     }
 
     handleChange(e){
-        this.setState({ value: e.target.value })
+        let message = e.target.value;
+        this.setState({
+            withMessage: message.length > 0,
+            value: message
+        })
     }
-    handleFileChange(e){
-        console.log(e.target.files.length);
-        if (0 === e.target.files.length) return;
-        let file = e.target.files[0];
-        this.fileName = file.name;
-        this.fileSize = file.size;
-        console.log(this.fileName + " ++ " + this.fileSize);
+
+    onFileInput (event) {
+        const message = this.createMessage({
+            text: null,
+            attach: event.target.files[0]
+        });
+        this.submitAction(message);
+        console.debug(message);
     }
+
+
+    createMessage (params) {
+        let message =  Object.create({});
+        Object.keys(params).forEach((key) => message[key] = params[key]);
+        Object.defineProperty(message, 'my', {
+            configurable: true,
+            enumerable: true,
+            value: true,
+            editable: false
+        });
+        message.time = new Date();
+        return message;
+    }
+
     handleSubmit(e) {
-        this.submitAction(this.state.value);
-        this.setState({ value: '' });
-        if (this.fileName !== "")
-        {
-            this.submitAction(`FILE: "${this.fileName}" SIZE: ${GetReadableSize(this.fileSize)}`);
-            this.fileName = "";
-            this.fileSize = 0;
+        e.preventDefault();
+        if (this.state.value) {
+            let message = this.createMessage({
+                text: this.state.value
+            });
+            this.submitAction(message);
+            this.setState({
+                value: '',
+                withMessage: false
+            });
         }
         /*
         fetch("http://localhost:8081/home/user/WebstormProjects/listenServer/app.js", request).then((response) => {
@@ -40,24 +73,44 @@ export default class MessageForm extends Component{
             alert("is all right: " + response.ok);
         }).catch(alert);
         */
-        e.preventDefault();
+    }
+
+    handleSmiles = (event) =>
+    {
+
+        //alert(num); smilesData.keys().map( (value, id) =>
+        //                     <SmileButton class={value} onClick={this.onSmileClick} key = {id} ></SmileButton>)
+        let className = event.target["name"];
+        let t1 = Object.keys(smilesData);
+        document.getElementById("message_input").value+=smilesData[className];
+        let newValue = this.state.value + smilesData[className];
+        this.setState({
+            withMessage: true,
+            value: newValue
+        })
     }
 
     render()
     {
         return (
-            <form onSubmit={this.handleSubmit} className="inputMessageForm">
-                <input type="text"
-                       value={this.state.value}
-                       onChange={this.handleChange}
-                />
-                <div className="fileInput" >
-                    <input type="file"
-                           name="fileIn"
-                           onChange={this.handleFileChange} />
-                    <label htmlFor="fileIn">MyIn</label>
-                </div>
-            </form>
+            <div>
+                <Smiles onSmileClick={this.handleSmiles}/>
+                <form onSubmit={this.handleSubmit}>
+                    <FormInput
+                        id="message_input"
+                        name="message_text"
+                        placeholder="Введите сообщение"
+                        onInput={this.handleChange}
+                        value={this.state.value}
+                        autocomplete="off"
+                    >
+                        <div className={styles["message-form-children"]}>
+                            <FileInput onChange={this.onFileInput.bind(this)}/>
+                            <Button visible={this.state.withMessage}/>
+                        </div>
+                    </FormInput>
+                </form>
+            </div>
         );
     }
 }

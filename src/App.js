@@ -14,7 +14,7 @@ const About = () => (
 
 class App extends Component {
   render() {
-      let route =
+     /* let route =
           (
               <Switch>
                   <Route path='/about' exact component={About} />
@@ -23,8 +23,8 @@ class App extends Component {
               </Switch>
           )
       ;
-      if(this.props.token || localStorage.token) {
-          route = (
+      if(this.props.token || localStorage.token) */
+         let route = (
               <Switch>
                   <Route path='/chats/:name/' exact component={TextBrowser} />
                   <Route path='/chats' exact component={() => ChatList(this.props.userData.chatNames)} />
@@ -34,7 +34,7 @@ class App extends Component {
                   <Redirect to='/about'></Redirect>
               </Switch>
           )
-      };
+
 
     return (
         <Router>

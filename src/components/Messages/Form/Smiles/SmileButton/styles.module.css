@@ -1,0 +1,36 @@
+
+.smile{
+    cursor: pointer;
+    background: url(../../../../../icons/smiles.png) no-repeat;
+    background-position: -216px -72px;
+    width: 72px;
+    height: 72px;
+}
+
+.like{
+    width: 72px;
+    height: 72px;
+    cursor: pointer;
+    background: url(../../../../../icons/smiles.png) no-repeat;
+    background-position: -144px -72px;
+}
+.angry{
+    width: 72px;
+    height: 72px;
+    cursor: pointer;
+    background: url(../../../../../icons/smiles.png) no-repeat;
+    background-position: 0px 0px;
+}
+.happy{
+    width: 72px;
+    height: 72px;
+    cursor: pointer;
+    background: url(../../../../../icons/smiles.png) no-repeat;
+    background-position: 0px -216px;
+}
+/*
+.leaf .icon {
+    cursor: text;
+    background: url(article.gif);
+}
+*/
