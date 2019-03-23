@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import styles from './styles.module.css';
 import SmileButton from "./SmileButton";
-import Message from "../../Message";
 
 export const smilesData = {
-    smile: ":)",
-    like: ":+1:",
-    angry: ":angry:",
-    happy: ":happy:"
+    "icon-angry-face-with-horns": ":)",
+    "icon-angry-face": ":+1:",
+    "icon-anguished-face": ":angry:"
 }
 
 class Smiles extends Component {

@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
-import * as logger from './logger';
 import * as serviceWorker from './serviceWorker';
 import userReducer from './store/reducers/user';
 import chatReducer from './store/reducers/chat';
@@ -18,7 +17,7 @@ const rootReducer = combineReducers({
     auth: authReducer
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
 const store = createStore(rootReducer, applyMiddleware(thunk));

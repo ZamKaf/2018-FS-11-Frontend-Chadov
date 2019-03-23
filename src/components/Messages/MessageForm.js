@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {GetReadableSize} from "./sizes";
 import Button from "./Button";
 import styles from './styles.module.css';
 import FormInput from './Form/FormInput';
 import FileInput from './Form/FileInput';
 import Smiles, {smilesData} from "./Form/Smiles";
-import SmileButton from "./Form/Smiles/SmileButton";
 
 export default class MessageForm extends Component{
     constructor(props){
@@ -81,7 +79,6 @@ export default class MessageForm extends Component{
         //alert(num); smilesData.keys().map( (value, id) =>
         //                     <SmileButton class={value} onClick={this.onSmileClick} key = {id} ></SmileButton>)
         let className = event.target["name"];
-        let t1 = Object.keys(smilesData);
         document.getElementById("message_input").value+=smilesData[className];
         let newValue = this.state.value + smilesData[className];
         this.setState({

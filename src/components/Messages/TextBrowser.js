@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
-import Message from './Message';
 import {Link} from "react-router-dom";
 
 export default class TextBrowser extends Component{
@@ -23,7 +22,6 @@ export default class TextBrowser extends Component{
     }
 
     handleSubmit(value) {
-        console.debug("here");
         if (value === "") return;
         this.messages.push(value);
         this.setState({ messages: this.messages });
