@@ -12,7 +12,12 @@ class SmileButton extends Component {
 
 	render() {
 		return (
-                <button value={smilesData[this.name]} onClick={this.onSmileClick} class={styles[this.name]} name={this.name}/>
+                <button
+                    value={smilesData[this.name]}
+                    onClick={this.onSmileClick}
+                    class={styles[this.name]}
+                    name={this.name}
+                    />
 		);
 	}
 }
