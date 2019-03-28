@@ -15,7 +15,7 @@ class SmileButton extends Component {
                 <button
                     value={smilesData[this.name]}
                     onClick={this.onSmileClick}
-                    class={styles[this.name]}
+                    className={styles[this.name]}
                     name={this.name}
                     />
 		);
