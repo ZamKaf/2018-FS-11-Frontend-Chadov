@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 
-import MessageForm from './Messages/MessageForm';
-import MessageList from './Messages/MessageList';
 import {Link} from "react-router-dom";
-import Message from "./Messages/Message";
 
 const ChatList = (chatNames) => {
     return (

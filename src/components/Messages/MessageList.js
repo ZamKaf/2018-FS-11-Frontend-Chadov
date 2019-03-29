@@ -9,7 +9,7 @@ export default class MessageList extends Component{
         return (
             <div className='message-list'>
                 {messages.map( (value, id) =>
-                    <Message key = {id} text={value.text} my={value.my}></Message>)
+                    <Message {...value} key = {id} ></Message>)
                 }
             </div>
         );
