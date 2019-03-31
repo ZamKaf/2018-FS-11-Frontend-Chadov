@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import MessageForm from './MessageForm';
 import MessageList from './MessageList';
 import {Link} from "react-router-dom";
+import styles from "../../App.module.css"
 
 export default class TextBrowser extends Component{
     constructor(props){
@@ -36,7 +37,7 @@ export default class TextBrowser extends Component{
                 <br/>
                 <label>{`Диалог с пользователем ${this.name}`}</label>
                 <MessageList messages={this.state.messages}></MessageList>
-                <div className='message-form-container'>
+                <div className={styles["message-form-container"]}>
                     <MessageForm onSubmit={this.handleSubmit}  >
                     </MessageForm>
                 </div>

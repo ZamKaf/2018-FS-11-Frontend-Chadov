@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {GetReadableSize} from "./sizes";
 import SmileButton from "./Form/Smiles/SmileButton";
 import {smilesData} from "./Form/Smiles";
+import styles from "../../App.module.css"
 
 const imagePattern = /^image\.*/;
 
@@ -71,7 +72,7 @@ export default class Message extends Component{
         let time = new Date();
         this.time = time.toLocaleTimeString();
         this.value = props.text;
-        this.my = props.my ? 'my' : '';
+        this.my = props.my ? styles.my: '';
 
         const attach = props.attach;
         let state = {};
@@ -96,7 +97,7 @@ export default class Message extends Component{
     render()
     {
         return (
-            <div className={'message '+ this.my}>
+            <div className={`${styles.message} ${this.my}`}>
                 <section>
                     <Content text={this.state.text} file={this.state.file} />
                 </section>
