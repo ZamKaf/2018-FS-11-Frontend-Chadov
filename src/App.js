@@ -40,6 +40,7 @@ class App extends Component {
     return (
         <Router>
           <div className={styles.App}>
+              <meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1"/>
               <Layout>
                   {route}
               </Layout>
