@@ -15,17 +15,6 @@ const About = () => (
 
 class App extends Component {
   render() {
-     /* let route =
-          (
-              <Switch>
-                  <Route path='/about' exact component={About} />
-                  <Route path='/login' exact component={Auth} />
-                  <Redirect to='/login'></Redirect>
-              </Switch>
-          )
-              <meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1"/>
-      ;
-      if(this.props.token || localStorage.token) */
          let route = (
               <Switch>
                   <Route path='/chats/:name/' exact component={TextBrowser} />
@@ -44,24 +33,6 @@ class App extends Component {
               <Layout>
                   {route}
               </Layout>
-              {/*
-              <Route path='/' exact component={ChatList}/>
-              <Route path='/:name' exact component={TextBrowser} />
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-    */}
 
           </div>
         </Router>
