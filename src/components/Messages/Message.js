@@ -13,7 +13,7 @@ function FileSize (props) {
     return null;
 }
 
-function Content (props) {
+const Content = (props) => {
     const file = props.file;
     if (props.text) {
         let result = [];
@@ -39,7 +39,6 @@ function Content (props) {
                         console.debug(smileText);
                         result.push(<SmileButton name={key} disable></SmileButton>);
                         i += smileText.length - 1;
-                        debugger;
                         found = true;
                         break;
                     }

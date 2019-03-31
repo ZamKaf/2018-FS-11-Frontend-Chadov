@@ -14,15 +14,12 @@ export default class TextBrowser extends Component{
         this.name = props.match.params.name;
         if (-1 === myList.indexOf(this.name))
             throw `There is no chat with user ${this.name}`;
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.messages = [];
-        /*
-                <Message text=></Message>*/
         this.messages.push({text: `Hello, Martin!`, my:false });
         this.state = { messages: this.messages }
     }
 
-    handleSubmit(value) {
+    handleSubmit = (value) => {
         if (value === "") return;
         this.messages.push(value);
         this.setState({ messages: this.messages });
