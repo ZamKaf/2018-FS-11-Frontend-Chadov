@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Auth from './components/Auth/Auth';
 import Layout from './components/Layout/Layout';
-import TextBrowser from './components/Messages/TextBrowser.js';
+import Chat from './components/Messages/Chat.js';
 import ChatList from './components/ChatList.js'
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
@@ -26,7 +26,7 @@ class App extends Component {
       if(this.props.token || localStorage.token) */
          let route = (
               <Switch>
-                  <Route path='/chats/:name/' exact component={TextBrowser} />
+                  <Route path='/chats/:name/' exact component={Chat} />
                   <Route path='/chats' exact component={() => ChatList(this.props.userData.chatNames)} />
 
                   <Route path='/login' exact component={Auth} />

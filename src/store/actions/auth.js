@@ -51,15 +51,21 @@ export const authFailed = (err) => {
   localStorage.setItem('token', response.data.token);
   dispatch(authSuccess(response.data.token));
 })*/
-export const auth = (login, password) => {
+
+export const auth = (authData) => {
   return dispatch => {
+      console.log("auth dispatcher");
+      dispatch(authSuccess(authData.token));
+      dispatch(initUserData(authData));
+      //localStorage.setItem('token', authData.token);
+      /*
     dispatch(authStart());
     //axios.post('/auth', {login, password})
       axios.get(`http://127.0.0.1:5000/login?login=${login}&password=${password}`)
       //fetch(`http://127.0.0.1:5000/login?login=${login}&password=${password}`, {
-         /* method: 'GET',
-          mode: 'no-cors'
-      })*/
+         // method: 'GET',
+        //  mode: 'no-cors'
+      //})
           .then((res)=>{
               console.log("object")
               console.log(res)
@@ -80,7 +86,7 @@ export const auth = (login, password) => {
           console.log(error);
           alert('Authotisation failed');
         dispatch(authFailed(error));
-      })
+      })*/
   }
 };
 
