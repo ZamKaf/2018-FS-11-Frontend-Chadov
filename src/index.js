@@ -68,7 +68,7 @@ navigator.serviceWorker.addEventListener('push', (event) => {
     alert("1;");
 });
 
-function getToken (messaging) {
+const getToken = (messaging) => {
     messaging.getToken()
         .then((currentToken) => {
             if (currentToken) {

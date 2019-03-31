@@ -6,7 +6,7 @@ import styles from "../../App.module.css"
 
 const imagePattern = /^image\.*/;
 
-function FileSize (props) {
+const FileSize = (props) => {
     if (props.size) {
         return <span>{props.size}</span>
     }
