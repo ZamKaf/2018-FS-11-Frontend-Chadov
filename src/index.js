@@ -5,12 +5,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import firebase from 'firebase';
 
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import userReducer from './store/reducers/user';
 import chatReducer from './store/reducers/chat';
 import authReducer from './store/reducers/auth';
+import {BrowserRouter as Router} from "react-router-dom";
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -82,6 +82,7 @@ function registerServiceWorker() {
         return registration;
     });
 }
+
 function getToken (messaging) {
     messaging.getToken()
         .then(function(currentToken) {

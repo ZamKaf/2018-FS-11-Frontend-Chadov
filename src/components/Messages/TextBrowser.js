@@ -30,7 +30,10 @@ export default class TextBrowser extends Component{
     {
         return (
             <div>
-                <Link to={`/chats`}>{'<------------'}</Link><br/>
+                <button>
+                    <Link to={`/chats`}>{'<----- К списку чатов'}</Link>
+                </button>
+                <br/>
                 <label>{`Диалог с пользователем ${this.name}`}</label>
                 <MessageList messages={this.state.messages}></MessageList>
                 <div className='message-form-container'>

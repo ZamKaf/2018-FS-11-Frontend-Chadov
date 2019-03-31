@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.module.css';
+import styles from './App.module.css';
 import Auth from './components/Auth/Auth';
 import Layout from './components/Layout/Layout';
 import TextBrowser from './components/Messages/TextBrowser.js';
@@ -38,7 +39,7 @@ class App extends Component {
 
     return (
         <Router>
-          <div className="App">
+          <div className={styles.App}>
               <Layout>
                   {route}
               </Layout>
