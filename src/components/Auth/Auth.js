@@ -3,6 +3,7 @@ import Input from './../Input/Input';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import { Redirect } from 'react-router-dom';
+import workerCode from '../../store/sharedWorker/sharedWorkerAuth';
 
 class Auth extends Component {
   state = {
@@ -37,7 +38,8 @@ class Auth extends Component {
         }
       }
     },
-    valid: false,
+    valid: true,
+    worker: this.getSharedWorker()
   };
 
   handleFormConfirm = (event) => {
@@ -48,8 +50,12 @@ class Auth extends Component {
         res[key] = this.state.loginForm[key].value;
         return res
       }, {});
+    console.log("handle login");
     console.log(result);
-    this.props.onAuth(result.login, result.password);
+    //this.props.onAuth(result.login, result.password);
+      this.state.worker.then((worker) => {
+          worker.port.postMessage({login:result.login, password:result.password});
+      });
   };
 
   checkValidity = (value, rule) => {
@@ -62,6 +68,31 @@ class Auth extends Component {
     }
     return isValid;
   };
+
+    onWorkerMessage (event) {
+        console.log("got msg from worker");
+        if (event.data.isOk){
+            this.props.onAuth(event.data.authData);
+        }
+    }
+
+    getSharedWorker () {
+        const workerFile = new Blob([`(${workerCode})(self)`], {type: 'text/javascript'});
+        return new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', (event) => {
+                const worker = new SharedWorker(event.target.result);
+                worker.port.addEventListener('message', this.onWorkerMessage.bind(this));
+                worker.port.start();
+                window.addEventListener('beforeunload', () => {
+                    worker.port.postMessage('disconnect');
+                });
+                res(worker);
+            });
+            reader.addEventListener('error', rej);
+            reader.readAsDataURL(workerFile);
+        });
+    }
 
   handleInput = (event, key) => {
     const newFormData = {
@@ -126,7 +157,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return  {
-    onAuth: (login, password) => dispatch(actions.auth(login, password))
+      onAuth: (authData) => dispatch(actions.auth(authData))
   }
 };
 

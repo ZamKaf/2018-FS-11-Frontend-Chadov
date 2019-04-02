@@ -38,30 +38,12 @@ export const authFailed = (err) => {
     error: err,
   }
 };
-export const auth = (login, password) => {
+
+export const auth = (authData) => {
   return dispatch => {
-    dispatch(authStart());
-      axios.get(`http://127.0.0.1:5000/login?login=${login}&password=${password}`)
-          .then((res)=>{
-              console.log("object")
-              console.log(res)
-              if(200>=res.status && res.status<300){
-                  return res;
-              }
-              throw new Error(res.statusText);
-          })
-          .then((res) => res.data)
-          .then((res) =>{
-              localStorage.setItem('token', res.token);
-              dispatch(authSuccess(res.token));
-              dispatch(initUserData(res));
-          })
-      .catch(error => {
-          console.log('failed:');
-          console.log(error);
-          alert('Authotisation failed');
-        dispatch(authFailed(error));
-      })
+      console.log("auth dispatcher");
+      dispatch(authSuccess(authData.token));
+      dispatch(initUserData(authData));
   }
 };
 
