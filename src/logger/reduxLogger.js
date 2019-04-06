@@ -1,7 +1,3 @@
-import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-
 export const reduxLogger = store => {
     return next => {
         return action => {

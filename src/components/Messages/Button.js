@@ -1,6 +1,6 @@
 import React, {  } from 'react';
 
-function Button (props) {
+const Button = (props) => {
     const isVisible = props.visible;
     if (isVisible) {
         return <button type="submit" />

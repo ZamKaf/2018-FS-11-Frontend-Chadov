@@ -38,55 +38,12 @@ export const authFailed = (err) => {
     error: err,
   }
 };
-/*headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        login: login,
-        password: password,*/
-
-/*.then(response => {
-    console.log('response:');
-  console.log(response);
-  localStorage.setItem('token', response.data.token);
-  dispatch(authSuccess(response.data.token));
-})*/
 
 export const auth = (authData) => {
   return dispatch => {
       console.log("auth dispatcher");
       dispatch(authSuccess(authData.token));
       dispatch(initUserData(authData));
-      //localStorage.setItem('token', authData.token);
-      /*
-    dispatch(authStart());
-    //axios.post('/auth', {login, password})
-      axios.get(`http://127.0.0.1:5000/login?login=${login}&password=${password}`)
-      //fetch(`http://127.0.0.1:5000/login?login=${login}&password=${password}`, {
-         // method: 'GET',
-        //  mode: 'no-cors'
-      //})
-          .then((res)=>{
-              console.log("object")
-              console.log(res)
-              //debugger
-              if(200>=res.status && res.status<300){
-                  return res;
-              }
-              throw new Error(res.statusText);
-          })
-          .then((res) => res.data)
-          .then((res) =>{
-              localStorage.setItem('token', res.token);
-              dispatch(authSuccess(res.token));
-              dispatch(initUserData(res));
-          })
-      .catch(error => {
-          console.log('failed:');
-          console.log(error);
-          alert('Authotisation failed');
-        dispatch(authFailed(error));
-      })*/
   }
 };
 

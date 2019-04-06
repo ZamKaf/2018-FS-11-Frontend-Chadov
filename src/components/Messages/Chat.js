@@ -15,7 +15,6 @@ export default class Chat extends Component{
         this.name = props.match.params.name;
         if (-1 === myList.indexOf(this.name))
             throw `There is no chat with user ${this.name}`;
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.messages = [];
         this.messages.push({text: `Hello, Martin!`, my:false });
         this.state = {
@@ -24,7 +23,7 @@ export default class Chat extends Component{
         }
     }
 
-    handleSubmit(value) {
+    handleSubmit = (value) => {
         if (value === "") return;
         this.messages.push(value);
         this.setState({ messages: this.messages });

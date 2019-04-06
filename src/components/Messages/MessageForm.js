@@ -9,9 +9,6 @@ export default class MessageForm extends Component{
     constructor(props){
         super(props);
         this.submitAction = props.onSubmit;
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        //this.handleFileChange = this.handleFileChange.bind(this);
         this.state =
             {
                 value: '',
@@ -21,7 +18,7 @@ export default class MessageForm extends Component{
         this.fileSize = 0;
     }
 
-    handleChange(e){
+    handleChange = (e) => {
         let message = e.target.value;
         this.setState({
             withMessage: message.length > 0,
@@ -29,7 +26,7 @@ export default class MessageForm extends Component{
         })
     }
 
-    onFileInput (event) {
+    onFileInput = (event) => {
         const message = this.createMessage({
             text: null,
             attach: event.target.files[0]
@@ -39,7 +36,7 @@ export default class MessageForm extends Component{
     }
 
 
-    createMessage (params) {
+    createMessage = (params) => {
         let message =  Object.create({});
         Object.keys(params).forEach((key) => message[key] = params[key]);
         Object.defineProperty(message, 'my', {
@@ -52,7 +49,7 @@ export default class MessageForm extends Component{
         return message;
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.value) {
             let message = this.createMessage({
@@ -64,20 +61,10 @@ export default class MessageForm extends Component{
                 withMessage: false
             });
         }
-        /*
-        fetch("http://localhost:8081/home/user/WebstormProjects/listenServer/app.js", request).then((response) => {
-            alert("yey");
-            alert(response.status);
-            alert("is all right: " + response.ok);
-        }).catch(alert);
-        */
     }
 
     handleSmiles = (event) =>
     {
-
-        //alert(num); smilesData.keys().map( (value, id) =>
-        //                     <SmileButton class={value} onClick={this.onSmileClick} key = {id} ></SmileButton>)
         let className = event.target["name"];
         document.getElementById("message_input").value+=smilesData[className];
         let newValue = this.state.value + smilesData[className];
