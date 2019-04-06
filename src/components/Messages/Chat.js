@@ -5,6 +5,7 @@ import MessageForm from './MessageForm';
 import MessageList from './MessageList';
 import {Link} from "react-router-dom";
 import workerCode from './sharedWorkerSendMsg';
+import styles from "../../App.module.css"
 
 export default class Chat extends Component{
     constructor(props){
@@ -64,10 +65,13 @@ export default class Chat extends Component{
     {
         return (
             <div>
-                <Link to={`/chats`}>{'<------------'}</Link><br/>
+                <button>
+                    <Link to={`/chats`}>{'<----- К списку чатов'}</Link>
+                </button>
+                <br/>
                 <label>{`Диалог с пользователем ${this.name}`}</label>
                 <MessageList messages={this.state.messages}></MessageList>
-                <div className='message-form-container'>
+                <div className={styles["message-form-container"]}>
                     <MessageForm onSubmit={this.handleSubmit}  >
                     </MessageForm>
                 </div>

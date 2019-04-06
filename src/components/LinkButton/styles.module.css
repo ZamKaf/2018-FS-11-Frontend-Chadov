@@ -1,0 +1,45 @@
+:root{
+    --red-value: 0;
+    --green-value: 255;
+    --blue-value: 0;
+}
+
+
+.chatListButton {
+    cursor: pointer;
+    animation: none;
+}
+.chatListButton:hover {
+    animation: pulse 1s infinite;
+    margin: 10px;
+}
+.chatListButton:active{
+    animation: pulse 1s infinite;
+    margin: 10px;
+}
+/*
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0.8);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 20px rgba(var(--red-value),var(--green-value),var(--blue-value), 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0);
+    }
+*/
+@keyframes pulse {
+    0% {
+      /*  -moz-box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0.8);*/
+        box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0.8);
+    }
+    70% {
+      /*  -moz-box-shadow: 0 0 0 20px rgba(var(--red-value),var(--green-value),var(--blue-value), 0);*/
+        box-shadow: 0 0 0 20px rgba(var(--red-value),var(--green-value),var(--blue-value), 0);
+    }
+    100% {
+       /* -moz-box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0);*/
+        box-shadow: 0 0 0 0 rgba(var(--red-value),var(--green-value),var(--blue-value), 0);
+    }
+}
