@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 
 
-function JustButton(props) {
+const JustButton = (props) => {
     const [count, setCount] = useState(0);
     const colourNames = ["redButton", "blueButton", "greenButton"]
     return (

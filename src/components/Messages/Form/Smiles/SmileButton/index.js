@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import {smilesData} from "../index";
 
 
-function SmileButton(props) {
+const SmileButton = (props) => {
     return (
         <button
             value={smilesData[props.name]}

@@ -4,8 +4,8 @@ import styles from './styles.module.css';
 import FormInput from './Form/FormInput';
 import FileInput from './Form/FileInput';
 import Smiles, {smilesData} from "./Form/Smiles";
-import J from "./Form/Smiles";
 import JustButton from "./Form/Smiles/JustButton";
+import JustButton1 from "./Form/Smiles/JustButton1";
 
 export default class MessageForm extends Component{
     constructor(props){
@@ -82,6 +82,7 @@ export default class MessageForm extends Component{
             <div>
                 <Smiles onSmileClick={this.handleSmiles}/>
                 <JustButton/>
+                <JustButton1/>
                 <form onSubmit={this.handleSubmit}>
                     <FormInput
                         id="message_input"
