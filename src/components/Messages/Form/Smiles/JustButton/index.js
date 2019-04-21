@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 
-
-const JustButton = (props) => {
+export default (props) => {
     const [count, setCount] = useState(0);
     const colourNames = ["redButton", "blueButton", "greenButton"]
     return (
@@ -13,5 +12,3 @@ const JustButton = (props) => {
         />
     );
 }
-
-export default JustButton;
