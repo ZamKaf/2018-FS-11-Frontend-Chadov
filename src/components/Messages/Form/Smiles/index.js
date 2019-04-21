@@ -7,9 +7,7 @@ export const smilesData = {
     "icon-anguished-face": ":angry:"
 }
 
-const Smiles = (props) => {
-
-        return (
+export default  (props) => (
             <div>
                 {
                     Object.keys(smilesData).map((value, id) =>
@@ -17,5 +15,3 @@ const Smiles = (props) => {
                 }
             </div>
         );
-}
-export default Smiles;

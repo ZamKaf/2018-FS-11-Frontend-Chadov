@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const JustButton1 = (props) => {
+export default (props) => {
     const [count, setCount] = useState(0);
 
     return (
@@ -12,5 +12,3 @@ const JustButton1 = (props) => {
         </div>
     );
 }
-
-export default JustButton1;
