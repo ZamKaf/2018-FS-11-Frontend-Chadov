@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SmileButton from "./SmileButton";
 
 export const smilesData = {
@@ -7,22 +7,11 @@ export const smilesData = {
     "icon-anguished-face": ":angry:"
 }
 
-class Smiles extends Component {
-    constructor(props){
-        super(props);
-        this.onSmileClick = props.onSmileClick;
-    }
-
-	render() {
-		return (
-			<div>
+export default  (props) => (
+            <div>
                 {
-                    Object.keys(smilesData).map( (value, id) =>
-                                         <SmileButton name={value} onClick={this.onSmileClick} key = {id} ></SmileButton>)
+                    Object.keys(smilesData).map((value, id) =>
+                        <SmileButton name={value} onClick={props.onSmileClick} key={id}></SmileButton>)
                 }
-			</div>
-		);
-	}
-}
-
-export default Smiles;
+            </div>
+        );
