@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {GetReadableSize} from "./sizes";
+import {GetReadableSize} from "./utility/sizes";
 import SmileButton from "./Form/Smiles/SmileButton";
 import {smilesData} from "./Form/Smiles";
 import styles from "../../App.module.css"
